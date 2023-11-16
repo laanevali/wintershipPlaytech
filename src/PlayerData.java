@@ -5,6 +5,9 @@ public class PlayerData {
     private int coinAmount;
     private String bet;
 
+    public PlayerData(String id, String transaction, String matchId, double coinAmount, String bet) {
+    }
+
     public String getId() {
         return id;
     }

@@ -4,6 +4,9 @@ public class MatchData {
     private double rateB;
     private String result;
 
+    public MatchData(String id, double rateA, double rateB, String result) {
+    }
+
     public String getId() {
         return id;
     }
