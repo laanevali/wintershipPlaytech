@@ -11,6 +11,7 @@ public class Main {
         List<PlayerData> playerDataList = new ArrayList<>();
         List<MatchData> matchDataList = new ArrayList<>();
         Set<String> playerIdData = new TreeSet<>();
+        double casinoBalance = 0;
 
         BufferedReader pData = new BufferedReader(new FileReader("./src/player_data.txt"));
         String pDataLine = pData.readLine();
@@ -44,6 +45,43 @@ public class Main {
         }
         mData.close();
 
-        
+        for (String id: playerIdData){
+            List<PlayerData> playerOperations = playerDataList.stream()
+                    .filter(p -> p.getId().equals(id))
+                    .toList();
+
+            double coinBalance = 0;
+            double playerOutcome = 0;
+            double allGames = 0;
+            double wonGames = 0;
+
+            for (PlayerData operation: playerOperations) {
+                switch (operation.getTransaction()) {
+                    case "DEPOSIT" -> coinBalance += operation.getCoinAmount();
+                    case "WITHDRAW" -> {
+                        coinBalance -= operation.getCoinAmount();
+                    }
+                    case "BET" -> {
+                        MatchData matchData;
+                        allGames++;
+                        if (matchData.getResult().equals(operation.getBet())) {
+                            wonGames++;
+                            if (matchData.getResult().equals("A")) {
+                                playerOutcome += operation.getCoinAmount()*matchData.getRateA();
+                            } else if (matchData.getResult().equals("B")) {
+                                playerOutcome += operation.getCoinAmount()*matchData.getRateB();
+                            }
+                        } else if (!matchData.getResult().equals("DRAW") &&
+                                !matchData.getResult().equals(operation.getBet())
+                        ) {
+                            playerOutcome -= operation.getCoinAmount();
+                        }
+                    }
+                    default -> throw new IllegalStateException("Unexpected operation: " + operation.getTransaction());
+                }
+            }
+            coinBalance += playerOutcome;
+            casinoBalance -= playerOutcome;
+        }
     }
 }
