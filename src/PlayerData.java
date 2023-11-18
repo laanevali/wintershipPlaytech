@@ -2,10 +2,15 @@ public class PlayerData {
     private String id;
     private String transaction;
     private String matchId;
-    private int coinAmount;
+    private double coinAmount;
     private String bet;
 
     public PlayerData(String id, String transaction, String matchId, double coinAmount, String bet) {
+        this.id = id;
+        this.transaction = transaction;
+        this.matchId = matchId;
+        this.coinAmount = coinAmount;
+        this.bet = bet;
     }
 
     public String getId() {
@@ -20,7 +25,7 @@ public class PlayerData {
         return matchId;
     }
 
-    public int getCoinAmount() {
+    public double getCoinAmount() {
         return coinAmount;
     }
 
