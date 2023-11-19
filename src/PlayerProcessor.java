@@ -1,3 +1,8 @@
+import model.CasinoBalanceData;
+import model.LegalPlayer;
+import model.MatchData;
+import model.PlayerData;
+
 import java.util.List;
 import java.util.Set;
 

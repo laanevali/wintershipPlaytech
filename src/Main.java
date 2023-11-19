@@ -1,3 +1,10 @@
+import fileOperation.FileReader;
+import fileOperation.FileWriter;
+import model.CasinoBalanceData;
+import model.LegalPlayer;
+import model.MatchData;
+import model.PlayerData;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +21,7 @@ public class Main {
         CasinoBalanceData casinoBalanceData = new CasinoBalanceData();
 
         try {
-            FileReader.readPlayerData("./src/player_data.txt", playerDataList, playerIdData);
+            fileOperation.FileReader.readPlayerData("./src/player_data.txt", playerDataList, playerIdData);
             FileReader.readMatchData("./src/match_data.txt", matchDataList);
             PlayerProcessor.processPlayers(playerDataList, matchDataList, playerIdData, illegalPlayers, legalPlayers, casinoBalanceData);
             FileWriter.writeFile("./src/results.txt", illegalPlayers, legalPlayers, casinoBalanceData);

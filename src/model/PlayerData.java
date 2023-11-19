@@ -1,11 +1,13 @@
+package model;
+
 public class PlayerData {
     private String id;
     private String transaction;
     private String matchId;
-    private double coinAmount;
+    private long coinAmount;
     private String bet;
 
-    public PlayerData(String id, String transaction, String matchId, double coinAmount, String bet) {
+    public PlayerData(String id, String transaction, String matchId, Long coinAmount, String bet) {
         this.id = id;
         this.transaction = transaction;
         this.matchId = matchId;

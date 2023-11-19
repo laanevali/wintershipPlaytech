@@ -1,3 +1,5 @@
+package model;
+
 public class MatchData {
     private String id;
     private double rateA;

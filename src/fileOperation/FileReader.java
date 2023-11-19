@@ -1,3 +1,8 @@
+package fileOperation;
+
+import model.MatchData;
+import model.PlayerData;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
@@ -16,7 +21,7 @@ public class FileReader {
                 String id = line[0];
                 String transaction = line[1];
                 String matchId = line[2];
-                double coinAmount = Double.parseDouble(line[3]);
+                long coinAmount = Long.parseLong(line[3]);
                 String bet = line[2].isEmpty() ? "" : line[4];
                 PlayerData playerData = new PlayerData(id, transaction, matchId, coinAmount, bet);
                 playerDataList.add(playerData);
